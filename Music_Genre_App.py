@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import gdown
 import os
 from skimage.transform import resize
+import platform
 
 
 # Sidebar Navigation
@@ -16,11 +17,6 @@ app_mode = st.sidebar.radio("Go to",["Home","About"])
 
 # Load model and classes
 
-
-import os
-import gdown
-import tensorflow as tf
-import platform
 
 # Choose correct path depending on OS
 if platform.system() == "Windows":
@@ -83,24 +79,27 @@ if app_mode == "Home":
         st.audio(uploaded_file, format='audio/wav')
 
         with st.spinner('Analyzing...'):
-            with open("temp.wav", "wb") as f:
-                f.write(uploaded_file.read())
+            try:
+                with open("temp.wav", "wb") as f:
+                    f.write(uploaded_file.read())
 
-        data = preprocess_file("temp.wav")
-        predictions = model.predict(data)
-        predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
+                data = preprocess_file("temp.wav")
+                predictions = model.predict(data)
+                predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
 
-        st.success(f"Predicted Genre: *{predicted_class}*")
+                st.success(f"Predicted Genre: *{predicted_class}*")
 
-        # Plot confidence
-        st.subheader("Confidence for Each Genre")
-        total_probs = np.sum(predictions, axis=0)
-        fig, ax = plt.subplots()
-        ax.bar(classes, total_probs, color="skyblue")
-        plt.xticks(rotation=45)
-        plt.ylabel("Confidence")
-        plt.tight_layout()
-        st.pyplot(fig)
+                # Plot confidence
+                st.subheader("Confidence for Each Genre")
+                total_probs = np.sum(predictions, axis=0)
+                fig, ax = plt.subplots()
+                ax.bar(classes, total_probs, color="skyblue")
+                plt.xticks(rotation=45)
+                plt.ylabel("Confidence")
+                plt.tight_layout()
+                st.pyplot(fig)
+            except Exception as e:
+                st.error(f"Something went wrong during prediction:{e}")
 
 # ABOUT PAGE
 elif app_mode == "About":
@@ -127,8 +126,11 @@ elif app_mode == "About":
 
     # Image
     image_path = "genre_visual.jpg"
-    if os.path.exists(image_path):
-        st.image(Image.open(image_path), caption="Music Genre Classifier", use_container_width=True)
+    try:
+        if os.path.exists(image_path):
+            st.image(Image.open(image_path), caption="Music Genre Classifier", use_container_width=True)
+    except:
+        st.warning("Couldn't load the image.")
     
 # Footer
 
