@@ -1,8 +1,8 @@
 streamlit==1.46.1
 tensorflow==2.10.0
+gdown
 librosa
 numpy
 matplotlib
-scikit-image
-gdown
-pillow
+Pillow
+protobuf==3.19.6
