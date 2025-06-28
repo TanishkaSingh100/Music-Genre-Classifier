@@ -60,23 +60,23 @@ def preprocess_file(audio_file_path, target_shape=(120, 120)):
         return []
 
     for i in range(min(num_chunk, 3)):  # just try first 3 chunks
-    try:
-        start = i * (chunk_sample - overlap_sample)
-        end = start + chunk_sample
-        chunk = audio_data[start:end]
-        st.write(f"Chunk {i+1}: length = {len(chunk)}")
+        try:
+            start = i * (chunk_sample - overlap_sample)
+            end = start + chunk_sample
+            chunk = audio_data[start:end]
+            st.write(f"Chunk {i+1}: length = {len(chunk)}")
 
-        mel_spectrogram = librosa.feature.melspectrogram(y=chunk, sr=sr)
-        st.write(f"Chunk {i+1}: mel_spectrogram shape = {mel_spectrogram.shape}")
+            mel_spectrogram = librosa.feature.melspectrogram(y=chunk, sr=sr)
+            st.write(f"Chunk {i+1}: mel_spectrogram shape = {mel_spectrogram.shape}")
 
-        mel_spectrogram_resized = resize(np.expand_dims(mel_spectrogram, axis=-1), target_shape)
-        st.write(f"Chunk {i+1}: resized shape = {mel_spectrogram_resized.shape}")
+            mel_spectrogram_resized = resize(np.expand_dims(mel_spectrogram, axis=-1), target_shape)
+            st.write(f"Chunk {i+1}: resized shape = {mel_spectrogram_resized.shape}")
 
-        data.append(mel_spectrogram_resized)
-        st.write(f"Chunk {i+1} processed")
+            data.append(mel_spectrogram_resized)
+            st.write(f"Chunk {i+1} processed")
 
-    except Exception as e:
-        st.error(f"Error processing chunk {i+1}: {e}")
+        except Exception as e:
+            st.error(f"Error processing chunk {i+1}: {e}")
 
     st.write(f"Final preprocessed data shape: {np.array(data).shape}")
     return np.array(data)
