@@ -6,3 +6,4 @@ numpy
 matplotlib
 Pillow
 protobuf
+scikit-image
