@@ -1,8 +1,8 @@
 streamlit
-tensorflow==2.10.1
-gdown
+tensorflow==2.12.0
 librosa
 numpy
 matplotlib
-Pillow
-
+scikit-image
+gdown
+pillow
