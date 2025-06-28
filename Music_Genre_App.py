@@ -83,13 +83,15 @@ if app_mode == "Home":
                 st.info(" Saving file...")
                 with open("temp.wav", "wb") as f:
                     f.write(uploaded_file.read())
+                st.info("File Saved...")
 
                 st.info(" Preprocessing audio...")
                 data = preprocess_file("temp.wav")
+                st.info(" Preprocessing complete...")
+
+                st.info("Predicting genre...")
                 predictions = model.predict(data)
                 predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
-                
-                st.info("Predicting genre...")
                 st.success(f"Predicted Genre: *{predicted_class}*")
 
                 # Plot confidence
@@ -128,13 +130,9 @@ elif app_mode == "About":
     """)
 
     # Image
-    image_path = "genre_visual.jpg"
-    try:
-        if os.path.exists(image_path):
-            st.image(Image.open(image_path), caption="Music Genre Classifier", use_container_width=True)
-    except:
-        st.warning("Couldn't load the image.")
-    
+    image_url = "https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/genre_visual.jpg"
+    st.image(image_url, caption="Music Genre Classifier", use_container_width=True)
+
 # Footer
 
 st.markdown("---")
