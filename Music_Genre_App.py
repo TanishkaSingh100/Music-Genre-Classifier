@@ -84,25 +84,43 @@ if app_mode == "Home":
                 with open("temp.wav", "wb") as f:
                     f.write(uploaded_file.read())
                 st.info("File Saved...")
+                
+                try:
+                    st.info(" Preprocessing audio...")
+                    data = preprocess_file("temp.wav")
+                    st.info(" Preprocessing complete...")
+                except Exception as e:
+                    st.error(f"Error in preprocessing: {e}")
+                    st.stop()
+                
+                try:
+                    st.info("Predicting genre...")
+                    predictions = model.predict(data)
+                    st.info(f"Prediction complete...")
+                except Exception as e:
+                    st.error(f"Error in prediction: {e}")
+                    st.stop()
 
-                st.info(" Preprocessing audio...")
-                data = preprocess_file("temp.wav")
-                st.info(" Preprocessing complete...")
-
-                st.info("Predicting genre...")
-                predictions = model.predict(data)
-                predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
-                st.success(f"Predicted Genre: *{predicted_class}*")
-
-                # Plot confidence
-                st.subheader("Confidence for Each Genre")
-                total_probs = np.sum(predictions, axis=0)
-                fig, ax = plt.subplots()
-                ax.bar(classes, total_probs, color="skyblue")
-                plt.xticks(rotation=45)
-                plt.ylabel("Confidence")
-                plt.tight_layout()
-                st.pyplot(fig)
+                try:
+                    predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
+                    st.success(f"Predicted Genre: *{predicted_class}*")
+                except Exception as e:
+                    st.error(f"Error computing predicted class :{e}")
+                    st.stop()
+                
+                try:
+                    # Plot confidence
+                    st.subheader("Confidence for Each Genre")
+                    total_probs = np.sum(predictions, axis=0)
+                    fig, ax = plt.subplots()
+                    ax.bar(classes, total_probs, color="skyblue")
+                    plt.xticks(rotation=45)
+                    plt.ylabel("Confidence")
+                    plt.tight_layout()
+                    st.pyplot(fig)
+                except Exception as e:
+                    st.error(f"Error plotting confidence: {e}")
+                    st.stop()
             except Exception as e:
                 st.error(f"Something went wrong during prediction:{e}")
 
