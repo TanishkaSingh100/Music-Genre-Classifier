@@ -5,20 +5,38 @@ import numpy as np
 import librosa
 import matplotlib.pyplot as plt
 import gdown
+import os
+from skimage.transform import resize
+
 
 # Sidebar Navigation
 
 st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Go to",["Home","About"])
 
-# Automatically download the model if not already present
-if not os.path.exists("Trained_model_v2.h5"):
-    url = "https://drive.google.com/file/d/1PB1reLQmwirfjMVKi6SXri2Q3UOK2xxm/view?usp=sharing"
-    output = "Trained_model_v2.h5"
-    gdown.download(url, output, quiet=False)
-
 # Load model and classes
-model = tf.keras.models.load_model("Trained_model_v2.h5")
+
+
+import os
+import gdown
+import tensorflow as tf
+import platform
+
+# Choose correct path depending on OS
+if platform.system() == "Windows":
+    model_file = "Trained_model_v2.h5"
+else:
+    model_file = "/tmp/Trained_model_v2.h5"
+
+
+file_id = "1PB1reLQmwirfjMVKi6SXri2Q3UOK2xxm"
+url ="https://drive.google.com/uc?id=1PB1reLQmwirfjMVKi6SXri2Q3UOK2xxm"
+
+
+if not os.path.exists(model_file):
+    gdown.download(url, model_file, quiet=False)
+
+model = tf.keras.models.load_model(model_file)
 classes = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
 
 # Audio Preprocessing Function
@@ -88,7 +106,7 @@ if app_mode == "Home":
 elif app_mode == "About":
     st.markdown(
     """
-    <h1 style='text-align: center; color: #87CEFA;'> About the Model </h1>,
+    <h1 style='text-align: center; color: #87CEFA;'> About the Model </h1>
     """,
     unsafe_allow_html=True)
     #st.title(" About the Model")
