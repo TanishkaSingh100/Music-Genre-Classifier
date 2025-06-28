@@ -1,8 +1,8 @@
-streamlit==1.46.1
+streamlit==1.25.0
 tensorflow==2.10.0
 gdown
 librosa
 numpy
 matplotlib
 Pillow
-protobuf>=3.20,<4
+protobuf==3.19.6
