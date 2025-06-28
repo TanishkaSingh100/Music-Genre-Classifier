@@ -3,17 +3,21 @@ from PIL import Image
 import tensorflow as tf
 import numpy as np
 import librosa
-from tensorflow.image import resize
 import matplotlib.pyplot as plt
-import os
+import gdown
 
 # Sidebar Navigation
 
 st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Go to",["Home","About"])
 
-# Load model and classes
+# Automatically download the model if not already present
+if not os.path.exists("Trained_model_v2.h5"):
+    url = "https://drive.google.com/file/d/1PB1reLQmwirfjMVKi6SXri2Q3UOK2xxm/view?usp=sharing"
+    output = "Trained_model_v2.h5"
+    gdown.download(url, output, quiet=False)
 
+# Load model and classes
 model = tf.keras.models.load_model("Trained_model_v2.h5")
 classes = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
 
