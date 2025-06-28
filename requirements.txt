@@ -5,4 +5,4 @@ librosa
 numpy
 matplotlib
 Pillow
-protobuf==3.19.6
+protobuf>=3.20,<4
