@@ -1,0 +1,21 @@
+# Ignore virtual environments
+venv/
+.env/
+_pycache_/
+*.pyc
+
+# Ignore model weights and data
+*.h5
+*.hdf5
+*.pkl
+*.npy
+*.wav
+*.mp3
+*.zip
+*.tar
+*.gz
+.DS_Store
+
+# Ignore logs and temp files
+*.log
+temp.*
