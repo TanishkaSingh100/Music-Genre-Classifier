@@ -39,22 +39,40 @@ classes = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", 
 
 def preprocess_file(audio_file_path, target_shape=(120, 120)):
     data = []
-    audio_data, sr = librosa.load(audio_file_path, sr=None)
+    try:
+        import soundfile as sf
+        audio_data, sr = sf.read(audio_file_path)
+        st.write(f"Audio loaded with soundfile: len={len(audio_data)}, sr={sr}")
+    except Exception as e:
+        st.error(f"Audio loading failed: {e}")
+        return []
 
     chunk_duration = 4
     overlap_duration = 2
     chunk_sample = chunk_duration * sr
     overlap_sample = overlap_duration * sr
 
-    num_chunk = int(np.ceil((len(audio_data) - chunk_sample) / (chunk_sample - overlap_sample))) + 1
-    for i in range(num_chunk):
-        start = i * (chunk_sample - overlap_sample)
-        end = start + chunk_sample
-        chunk = audio_data[start:end]
-        mel_spectrogram = librosa.feature.melspectrogram(y=chunk, sr=sr)
-        mel_spectrogram = resize(np.expand_dims(mel_spectrogram, axis=-1), target_shape)
-        data.append(mel_spectrogram)
+    try:
+        num_chunk = int(np.ceil((len(audio_data) - chunk_sample) / (chunk_sample - overlap_sample))) + 1
+        st.write(f"chunk_sample: {chunk_sample}, overlap_sample: {overlap_sample}, num_chunk: {num_chunk}")
+    except Exception as e:
+        st.error(f"Chunking calculation failed: {e}")
+        return []
 
+    for i in range(min(num_chunk, 3)):  # test with only 3 chunks
+        try:
+            start = i * (chunk_sample - overlap_sample)
+            end = start + chunk_sample
+            chunk = audio_data[start:end]
+            mel_spectrogram = librosa.feature.melspectrogram(y=chunk, sr=sr)
+            mel_spectrogram = resize(np.expand_dims(mel_spectrogram, axis=-1), target_shape)
+            data.append(mel_spectrogram)
+            st.write(f"Processed chunk {i+1}")
+        except Exception as e:
+            st.error(f"Error processing chunk {i+1}: {e}")
+            continue
+
+    st.write(f"Final preprocessed data shape: {np.array(data).shape}")
     return np.array(data)
 
 # Home Page
