@@ -80,13 +80,16 @@ if app_mode == "Home":
 
         with st.spinner('Analyzing...'):
             try:
+                st.info(" Saving file...")
                 with open("temp.wav", "wb") as f:
                     f.write(uploaded_file.read())
 
+                st.info(" Preprocessing audio...")
                 data = preprocess_file("temp.wav")
                 predictions = model.predict(data)
                 predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
-
+                
+                st.info("Predicting genre...")
                 st.success(f"Predicted Genre: *{predicted_class}*")
 
                 # Plot confidence
