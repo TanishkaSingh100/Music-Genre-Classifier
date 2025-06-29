@@ -6,12 +6,13 @@ An interactive deep learning web application that classifies music genres from a
 
 # Preview
 
-[![Home Page](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/home.png)](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/home.png)
+## 🔍 Preview
 
-[![About Page](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/about.png)](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/about.png)
+![Home Page](image/home.png)
 
-[![Confidence Chart](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/confidence.png)](https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/image/confidence.png)
+![About Page](image/about.png)
 
+![Confidence](image/confidence.png)
 ---
 
 # Features
