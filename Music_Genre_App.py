@@ -28,26 +28,29 @@ if not os.path.exists(model_file):
 model = tf.keras.models.load_model(model_file)
 classes = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
 
-# Audio Preprocessing Function
-def preprocess_file(audio_file_path, target_shape=(120, 120)):
+# Preprocessing with chunking
+def preprocess_file(file_path, duration=4, target_shape=(120, 120), overlap=2):
+    import soundfile as sf
     try:
-        import soundfile as sf
-        audio_data, sr = sf.read(audio_file_path)
-        if len(audio_data.shape) > 1:
-            audio_data = np.mean(audio_data, axis=1)  # Convert to mono
-        st.write(f"Loaded: {len(audio_data)} samples, {sr} Hz")
+        audio, sr = sf.read(file_path)
+        if len(audio.shape) > 1:
+            audio = np.mean(audio, axis=1)
 
-        # Trim to first 4 seconds
-        chunk = audio_data[:sr * 4]
+        chunk_len = sr * duration
+        overlap_len = sr * overlap
+        step = chunk_len - overlap_len
 
-        st.write(f"Processing chunk of length: {len(chunk)}")
-        mel_spectrogram = librosa.feature.melspectrogram(y=chunk, sr=sr)
-        st.write(f"Mel shape: {mel_spectrogram.shape}")
-        mel_spectrogram_resized = resize(np.expand_dims(mel_spectrogram, axis=-1), target_shape)
-        return np.array([mel_spectrogram_resized])
+        chunks = []
+        for start in range(0, len(audio) - chunk_len + 1, step):
+            chunk = audio[start:start + chunk_len]
+            mel = librosa.feature.melspectrogram(y=chunk, sr=sr)
+            mel_resized = resize(np.expand_dims(mel, axis=-1), target_shape)
+            chunks.append(mel_resized)
+
+        return np.array(chunks)
 
     except Exception as e:
-        st.error(f"Error during preprocessing: {e}")
+        st.error(f"Preprocessing error: {e}")
         return []
 
 # Home Page
@@ -68,33 +71,26 @@ if app_mode == "Home":
 
         with st.spinner('Analyzing...'):
             try:
-                st.info("Saving file...")
                 with open("temp.wav", "wb") as f:
                     f.write(uploaded_file.read())
-                st.info("File saved.")
 
-                st.info("Preprocessing audio...")
                 data = preprocess_file("temp.wav")
                 if len(data) == 0:
                     st.stop()
-                st.info("Preprocessing complete.")
 
-                st.info("Predicting genre...")
                 predictions = model.predict(data)
-                st.info("Prediction complete.")
+                total_probs = np.mean(predictions, axis=0)
 
-                predicted_class = classes[np.argmax(np.sum(predictions, axis=0))]
+                predicted_class = classes[np.argmax(total_probs)]
                 st.success(f"Predicted Genre: {predicted_class}")
 
-                # TEMPORARILY DISABLED:
-                # st.subheader("Confidence for Each Genre")
-                # total_probs = np.sum(predictions, axis=0)
-                # fig, ax = plt.subplots()
-                # ax.bar(classes, total_probs, color="skyblue")
-                # plt.xticks(rotation=45)
-                # plt.ylabel("Confidence")
-                # plt.tight_layout()
-                # st.pyplot(fig)
+                st.subheader("Confidence for Each Genre")
+                fig, ax = plt.subplots()
+                ax.bar(classes, total_probs, color="skyblue")
+                plt.xticks(rotation=45)
+                plt.ylabel("Confidence")
+                plt.tight_layout()
+                st.pyplot(fig)
 
             except Exception as e:
                 st.error(f"Something went wrong during prediction: {e}")
