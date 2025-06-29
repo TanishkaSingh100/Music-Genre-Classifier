@@ -89,6 +89,8 @@ Will update the live demo link soon!
  # Inspiration
  Inspired by SPOTLESS TECH's youtube tutorial and extended with personal touches.
 
+---
+
  # Author
 
 Tanishka Singh
