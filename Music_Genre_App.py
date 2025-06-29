@@ -8,6 +8,7 @@ import gdown
 import os
 from skimage.transform import resize
 import platform
+import soundfile as sf
 
 
 # Sidebar Navigation
@@ -43,6 +44,12 @@ def preprocess_file(audio_file_path, target_shape=(120, 120)):
         import soundfile as sf
         audio_data, sr = sf.read(audio_file_path)
         st.write(f"Audio loaded with soundfile: len={len(audio_data)}, sr={sr}")
+
+        # Convert stereo to mono if needed
+        if len(audio_data.shape) > 1:
+            audio_data = np.mean(audio_data, axis=1)
+            st.write("Converted stereo to mono.")
+
     except Exception as e:
         st.error(f"Audio loading failed: {e}")
         return []
@@ -80,7 +87,6 @@ def preprocess_file(audio_file_path, target_shape=(120, 120)):
 
     st.write(f"Final preprocessed data shape: {np.array(data).shape}")
     return np.array(data)
-
 # Home Page
 
 if app_mode == "Home":
