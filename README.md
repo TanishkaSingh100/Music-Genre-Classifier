@@ -13,6 +13,9 @@ An interactive deep learning web application that classifies music genres from a
 
 ![Confidence](image/confidence.png)
 
+
+![About](image/about.png)
+
 ---
 
 # Features
