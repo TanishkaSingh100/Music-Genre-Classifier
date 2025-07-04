@@ -6,7 +6,10 @@ An interactive deep learning web application that classifies music genres from a
 
 # Preview
 
-## 🔍 Preview
+## Live App :
+[Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
+
+## Screenshots :
 
 ![Home Page](image/home.png)
 
