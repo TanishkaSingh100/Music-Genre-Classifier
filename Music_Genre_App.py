@@ -115,8 +115,6 @@ elif app_mode == "About":
 
     ---
     """)
-    image_url = "https://raw.githubusercontent.com/TanishkaSingh100/Music-Genre-Classifier/main/genre_visual.jpg"
-    st.image(image_url, caption="Music Genre Classifier", use_container_width=True)
-
+    
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: grey;'>Thankyou for checking out the model!</p>", unsafe_allow_html=True)
