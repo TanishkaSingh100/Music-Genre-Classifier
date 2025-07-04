@@ -85,12 +85,6 @@ The model generalizes well with *no overfitting* observed.
 
 ---
 
- # Deployment Status
- Currently working on deployment via Hugging Face Spaces.
-Will update the live demo link soon!
-
----
-
  # Inspiration
  Inspired by SPOTLESS TECH's youtube tutorial and extended with personal touches.
 
