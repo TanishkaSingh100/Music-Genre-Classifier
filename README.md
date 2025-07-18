@@ -6,8 +6,7 @@ Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on S
 ---
 # Preview
 
-## Demo :
-[Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
+## Demo : [Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
 
 ## Home Page :
 ![Home Page](image/home.png)
