@@ -8,4 +8,4 @@ pydub
 scikit-image
 soundfile
 streamlit
-tensorflow
+tensorflow>=2.10,<2.13
