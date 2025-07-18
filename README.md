@@ -93,8 +93,8 @@ The model generalizes well with *no overfitting* observed.
 
    - Confirm installation:
      
-     ffmpeg -version
-     ffprobe -version
+      ffmpeg -version
+      ffprobe -version
 
 4. *Run the app*
 
