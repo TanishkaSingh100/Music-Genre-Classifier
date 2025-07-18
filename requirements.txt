@@ -1,11 +1,11 @@
 gdown
 librosa
 matplotlib
-numpy
+numpy==1.24.3
 pillow
 protobuf
 pydub
 scikit-image
 soundfile
-streamlit
-tensorflow>=2.14
+streamlit>=1.22.0
+tensorflow==2.11.1
