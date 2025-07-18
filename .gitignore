@@ -1,0 +1,15 @@
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+*.h5
+*.ckpt
+*.tmp
+temp.wav
+temp.mp3
+.DS_Store
+.env
+.venv/
+.idea/
+.vscode/
+*.log
