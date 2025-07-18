@@ -4,11 +4,10 @@ An interactive deep learning web application that classifies music genres from a
 Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on Streamlit Cloud.
 
 ---
-
-# Demo :
-[Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
-
 # Preview
+
+## Demo :
+[Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
 
 ## Home Page :
 ![Home Page](image/home.png)
