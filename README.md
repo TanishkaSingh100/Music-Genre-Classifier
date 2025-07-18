@@ -5,18 +5,18 @@ Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on S
 
 ---
 
-## Demo :
+# Demo :
 [Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
 
-## Preview
+# Preview
 
-Home Page :
+## Home Page :
 ![Home Page](image/home.png)
 
-About Page :
+## About Page :
 ![About Page](image/about.png)
 
-Confidence bar :
+## Confidence bar :
 ![Confidence](image/confidence.png)
 
 ---
@@ -94,6 +94,7 @@ The model generalizes well with *no overfitting* observed.
    - Confirm installation:
      
       ffmpeg -version
+
       ffprobe -version
 
 4. *Run the app*
