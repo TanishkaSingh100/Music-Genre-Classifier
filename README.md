@@ -8,12 +8,15 @@ Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on S
 ## Demo :
 [Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
 
-## 🔍 Preview
+## Preview
 
+Home Page :
 ![Home Page](image/home.png)
 
+About Page :
 ![About Page](image/about.png)
 
+Confidence bar :
 ![Confidence](image/confidence.png)
 
 ---
@@ -125,4 +128,4 @@ The model generalizes well with *no overfitting* observed.
 
  # Author
 
-   Tanishka Singh=
+   Tanishka Singh
