@@ -1,13 +1,13 @@
 # Music Genre Classifier
 
 An interactive deep learning web application that classifies music genres from audio files. Using Mel-Spectrograms and a Convolutional Neural Network (CNN), the model predicts the genre of .wav and .mp3 files.
-Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on Streamlit Cloud.
+Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on Hugging Face.
 
 ---
 # Preview
 
 ## Demo :
-[Click here to try it out](https://music-genre-classifier-ef5ddonmdndiuegbpsj7xn.streamlit.app/)
+[Click here to try it out](https://huggingface.co/spaces/Tanishka27/Music-Genre-Classifier)
 
 ## Home Page :
 ![Home Page](image/home.png)
@@ -106,7 +106,7 @@ The model generalizes well with *no overfitting* observed.
 
  # Deployment
 
-   - Deployed on Streamlit Cloud
+   - Deployed on Hugging Face
 
    - Works with both .wav and .mp3 formats
 
