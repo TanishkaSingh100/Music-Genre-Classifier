@@ -3,9 +3,9 @@ librosa
 matplotlib
 numpy==1.24.3
 pillow
-protobuf
+protobuf>=4.21.0
 pydub
 scikit-image
 soundfile
 streamlit>=1.22.0
-tensorflow==2.11.1
+tensorflow-cpu>=2.11.0
