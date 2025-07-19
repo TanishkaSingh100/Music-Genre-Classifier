@@ -130,6 +130,8 @@ The model generalizes well with *no overfitting* observed.
 
   This project is licensed under the MIT License
 
+---
+
  # Author
 
    Tanishka Singh
