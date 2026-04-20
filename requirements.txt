@@ -1,11 +1,11 @@
 streamlit
-tensorflow-cpu==2.12.0
-numpy==1.23.5
-librosa==0.10.0
+numpy
+pandas
 matplotlib
-pillow
-gdown
+librosa
 soundfile
 scikit-image
+pillow
+gdown
 pydub
 protobuf<4.21
