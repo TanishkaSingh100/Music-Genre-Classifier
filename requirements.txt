@@ -7,5 +7,5 @@ protobuf>=4.21.0
 pydub
 scikit-image
 soundfile
-streamlit>=1.22.0
+streamlit
 tensorflow-cpu>=2.11.0
