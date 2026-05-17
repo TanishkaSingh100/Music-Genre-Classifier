@@ -7,7 +7,7 @@ Built with TensorFlow and Streamlit, trained on GTZAN dataset, and deployed on H
 # Preview
 
 ## Demo :
-[Click here to try it out](https://huggingface.co/spaces/Tanishka27/Music-Genre-Classifier)
+[Click here to try it out](https://huggingface.co/spaces/Tanishka27/music-genre-classifier-docker)
 
 ## Home Page :
 ![Home Page](image/home.png)
